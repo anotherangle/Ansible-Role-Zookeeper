@@ -30,6 +30,8 @@
   file: path={{ zookeeper_data_dir }} state=directory
 - name: creating config file
   template: src=zoo.cfg.j2 dest={{ zookeeper_conf_dir }}/zoo.cfg
+- name: assigning id
+  template: src=myid.j2 dest="{{ zookeeper_data_dir }}/myid"
 - name: initialize
   command: bash /opt/zookeeper/bin/zkServer.sh start
 - name: Make sure Zookeeper is running
